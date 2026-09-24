@@ -20,6 +20,18 @@ class PortTests(unittest.TestCase):
     def test_live_process_probe_is_read_only(self):
         self.assertTrue(port.process_alive(os.getpid()))
 
+    @unittest.skipUnless(os.name == "nt", "Windows Git path handling")
+    def test_child_git_long_paths_preserve_inherited_config(self):
+        original = {"Path": "example", "GIT_CONFIG_COUNT": "1",
+                    "GIT_CONFIG_KEY_0": "example.setting", "GIT_CONFIG_VALUE_0": "keep"}
+        env = port.command_environment(original)
+        self.assertEqual(original["GIT_CONFIG_COUNT"], "1")
+        self.assertEqual(env["PATH"], "example")
+        self.assertEqual(env["GIT_CONFIG_COUNT"], "2")
+        self.assertEqual(env["GIT_CONFIG_VALUE_0"], "keep")
+        self.assertEqual(env["GIT_CONFIG_KEY_1"], "core.longpaths")
+        self.assertEqual(env["GIT_CONFIG_VALUE_1"], "true")
+
     def test_digest_normalizes_only_line_endings(self):
         with tempfile.TemporaryDirectory() as tmp:
             p = Path(tmp) / "synthetic.cpp"

@@ -32,8 +32,22 @@ def load_lock():
     return lock
 
 
+def command_environment(base=None):
+    env = dict(os.environ if base is None else base)
+    if os.name == "nt":
+        env = {key.upper(): value for key, value in env.items()}
+        # Diligent's nested shader fixtures exceed legacy Windows path limits.
+        # Scope this to child Git processes, including CMake's submodule clones.
+        count = int(env.get("GIT_CONFIG_COUNT", "0"))
+        env[f"GIT_CONFIG_KEY_{count}"] = "core.longpaths"
+        env[f"GIT_CONFIG_VALUE_{count}"] = "true"
+        env["GIT_CONFIG_COUNT"] = str(count + 1)
+    return env
+
+
 def command(args, cwd=None, **kwargs):
-    return subprocess.run([str(x) for x in args], cwd=cwd, check=True, **kwargs)
+    env = command_environment(kwargs.pop("env", None))
+    return subprocess.run([str(x) for x in args], cwd=cwd, check=True, env=env, **kwargs)
 
 
 def git(source, *args):

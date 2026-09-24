@@ -31,6 +31,8 @@ python -B port.py run
 
 On Windows, `py -3 -B` can replace `python -B`. Replace the disc placeholder with your own directory, not an ISO/BIN filename. Setup pins upstream revision `14b1e5cb39b4af7e6fc12f9a29fdc751efde49d7` and applies the included patch. Generation builds the recompiler, verifies the output, and stages it into the engine's existing runner source directories. Build then creates the native executable. It uses one `RelWithDebInfo` build and leaves independently edited files alone.
 
+On Windows, the script enables Git long-path handling only for its child processes so nested dependency files can be checked out. It does not change global Git settings. A short checkout path is still advisable for compiler/build-tool path limits.
+
 The default engine location is `.engine/PS2Recomp`. To reuse an existing matching patched checkout and build instead, start with `python -B port.py setup --source "<EXISTING_PS2RECOMP_CHECKOUT>"`. It verifies the source instead of resetting it. Local paths/state live in ignored `.port/`; generated source and builds remain inside the selected engine checkout. Deliberate source changes require reviewing/updating the recipe locks; checks are intentionally strict.
 
 Optional setup flags: `--cpu-renderer` disables Diligent; `--no-ffmpeg` builds the current placeholder movie path, not an alternate decoder. These are not equivalent to the tested default experience. On Windows, CMake can use an existing FFmpeg SDK via `PS2X_FFMPEG_ROOT`; non-Windows builds need FFmpeg development packages (`libavcodec`, `libavformat`, `libavutil`, `libswresample`, `libswscale`) when enabled.
