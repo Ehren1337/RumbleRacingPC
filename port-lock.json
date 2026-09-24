@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "upstream_url": "https://github.com/ran-j/PS2Recomp.git",
+  "upstream_revision": "14b1e5cb39b4af7e6fc12f9a29fdc751efde49d7",
+  "source_snapshot": "https://github.com/Ehren1337/PS2RecompAIWorkflow/commit/74c849130cda63af33095d50088152465139d266",
+  "elf": "SLUS_201.74",
+  "elf_sha256": "e3c2c19b5fdeeac9fb1f5a9b893346e7892e564796fa2f74fc40ae17a8ade594",
+  "audio_module_sha256": "301f101c72c29ebecf368457b39de5a3ac65dbbdf2cff62e7b55470fb7e07f95",
+  "generated_files": 2144,
+  "generated_tree_sha256": "aca0f7824e993d9acb90c61d12789090685abddf7e00445d86d49d1672d54c4f",
+  "files": {
+    "patches/runtime.patch": "9c074c87b841678d18cf7f426c3a424bcb387ac919f450b14f8ee11886c005fc",
+    "config/retail-functions.csv": "8de78baef555490cefac96860935c9157c83a526b85c85295bc37eb89ff798c4",
+    "config/retail.toml": "ca88f86f85d131f9515c8ffa31e01c45b88737e26ac002341f5d291de7eb9365"
+  }
+}

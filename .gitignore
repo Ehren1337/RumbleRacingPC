@@ -1,0 +1,18 @@
+# Allowlist: existing game assets/research/generated code stay local.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/port.py
+!/port-lock.json
+!/config/
+/config/*
+!/config/retail-functions.csv
+!/config/retail.toml
+!/patches/
+/patches/*
+!/patches/runtime.patch
+!/tests/
+/tests/*
+!/tests/test_port.py
