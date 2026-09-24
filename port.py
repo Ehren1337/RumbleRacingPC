@@ -438,5 +438,5 @@ if __name__ == "__main__":
     try:
         main()
     except (OSError, ValueError, KeyError, subprocess.CalledProcessError) as error:
-        print(f"RacingRumblePC: {error}", file=sys.stderr)
+        print(f"RumbleRacingPC: {error}", file=sys.stderr)
         sys.exit(1)
