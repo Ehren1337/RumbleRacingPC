@@ -68,7 +68,11 @@ This check used the same Windows PC's installed Visual Studio 2026/MSVC 19.51, C
 
 `generate --check --disc "<EXTRACTED_DISC_DIRECTORY>"` verifies reproduction without staging files. `--recompiler "<EXISTING_RECOMPILER>"` reuses an already built compiler for that check. Output that does not match the locked port is rejected.
 
-This repository preserves the current reproducible retail port recipe. It is **not a backup of private Ghidra databases, prototype research, assets, saves or local edits outside the published patch**. Keep those separately if you want to continue that research.
+## Research and developer handoff
+
+The [research index](analysis/README.md) links reviewed asset/debug findings, function/file comparisons, a current porting summary and the detailed [simulation handoff](RUMBLE-RACING-SIMULATION-HANDOFF.md). These are notes and metadata, not game code or a complete symbol/debug-feature restoration.
+
+This repository preserves the current reproducible retail port recipe and selected research findings. It is **not a backup of raw Ghidra databases, the full local work log, decompiler exports, assets, saves or local edits outside the published patch**. Keep those separately if you need the exact original analysis state.
 
 ## Credits and license
 

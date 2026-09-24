@@ -1,4 +1,4 @@
-# Allowlist: existing game assets/research/generated code stay local.
+# Allowlist: publish reviewed source/research; raw game data and analysis stay local.
 /*
 !/.gitignore
 !/.gitattributes
@@ -16,3 +16,12 @@
 !/tests/
 /tests/*
 !/tests/test_port.py
+!/RUMBLE-RACING-SIMULATION-HANDOFF.md
+!/analysis/
+/analysis/*
+!/analysis/README.md
+!/analysis/PORTING-SUMMARY.md
+!/analysis/ASSETS-AND-DEBUG.md
+!/analysis/retail-exact-function-matches.csv
+!/analysis/prototype-vs-retail-files.csv
+!/analysis/debug-command-strings.csv
