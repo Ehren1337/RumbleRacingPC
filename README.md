@@ -56,13 +56,17 @@ The visible window uses 1280x720 output with a 4:3 picture; that does not raise 
 
 ## Verification and limits
 
-The recipe regenerated all 2,144 files exactly from the verified retail executable, including the earlier handwritten RSQRT correction now produced by the translator. All 86 post-patch source files match the tested runtime snapshot. The dedicated script successfully built the existing Windows checkout and launched the original title screen without development race options. The existing Windows runtime suite previously passed **563/563** tests; this does not prove complete game compatibility. All six dedicated script tests passed, covering guarded staging, file ownership, pose validation and read-only process checks:
+The recipe regenerated all 2,144 files exactly from the verified retail executable, including the earlier handwritten RSQRT correction now produced by the translator. All 86 post-patch source files match the tested runtime snapshot. The existing Windows runtime suite previously passed **563/563** tests; this does not prove complete game compatibility. All seven dedicated script tests passed, covering guarded staging, file ownership, pose validation, read-only process checks and scoped Windows Git configuration:
 
 ```sh
 python -B -m unittest discover -s tests -v
 ```
 
-`generate --check --disc "<EXTRACTED_DISC_DIRECTORY>"` verifies reproduction without staging files. `--recompiler "<EXISTING_RECOMPILER>"` reuses an already built compiler for that check. Output that does not match the locked port is rejected. The working Windows checkout has been reused for validation; a complete first-time dependency download/build on another computer has not been validated.
+**Fresh-clone verification (September 23, 2026):** cloned the public repository into an isolated folder, fetched/patched upstream and downloaded dependencies there, built a new recompiler, reproduced/staged all 2,144 files, and built a new runner. No old engine build, generated source, saves or Ghidra project was copied. The existing extracted retail disc was the game input. Normal startup, intro playback, menus, Silver Streak selection, True Grits loading and player-controlled acceleration worked with D3D11. No direct-race, teleport, upgrades or AI-driving options were used for this gameplay check. D3D12 and Vulkan libraries also compiled; gameplay on those backends remains unverified.
+
+This check used the same Windows PC's installed Visual Studio 2026/MSVC 19.51, CMake 4.4, Python 3.14 and Vulkan SDK 1.4.357 toolchain. It verifies rebuilding independently of the old workspace build, not installation on a bare machine or every supported compiler. The initial dependency checkout exposed a Windows long-path problem, fixed by the script's child-process Git configuration.
+
+`generate --check --disc "<EXTRACTED_DISC_DIRECTORY>"` verifies reproduction without staging files. `--recompiler "<EXISTING_RECOMPILER>"` reuses an already built compiler for that check. Output that does not match the locked port is rejected.
 
 This repository preserves the current reproducible retail port recipe. It is **not a backup of private Ghidra databases, prototype research, assets, saves or local edits outside the published patch**. Keep those separately if you want to continue that research.
 
