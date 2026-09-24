@@ -1,4 +1,4 @@
-# RacingRumblePC
+# RumbleRacingPC
 
 Experimental **Rumble Racing USA retail PC port**, built with a modified [PS2Recomp](https://github.com/ran-j/PS2Recomp). Current Windows testing reaches menus, vehicle/track selection, races, laps and results. Busy scenes still slow down; some rendering/audio issues remain. This is a source project, not a finished downloadable game.
 
@@ -21,8 +21,8 @@ Experimental **Rumble Racing USA retail PC port**, built with a modified [PS2Rec
 Run from this repository's root:
 
 ```sh
-git clone https://github.com/Ehren1337/RacingRumblePC.git
-cd RacingRumblePC
+git clone https://github.com/Ehren1337/RumbleRacingPC.git
+cd RumbleRacingPC
 python -B port.py setup
 python -B port.py generate --disc "<EXTRACTED_DISC_DIRECTORY>"
 python -B port.py build
